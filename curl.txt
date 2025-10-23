@@ -1,0 +1,17 @@
+# claude mcp
+curl -X POST http://localhost:8000/mcp   -H "Content-Type: application/json"   -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}'
+
+# tools rest
+curl -X POST http://localhost:8000/tools/calculate_operation   -H "Content-Type: application/json"   -d '{"operation": "15 * 8 + 3"}'
+
+# tools rest
+curl -X POST http://localhost:8000/tools/get_server_info
+
+# tools rest
+curl -X POST http://localhost:8000/tools/format_text   -H "Content-Type: application/json"   -d '{"text": "Hello World", "style": "uppercase"}'
+
+# tools rest
+curl -X POST http://localhost:8000/tools/list
+
+# tools rest
+curl -X POST http://localhost:8000/tools/get_server_info   -H "Content-Type: application/json"   -d "{}"

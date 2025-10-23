@@ -1,0 +1,7 @@
+python3 -m venv venv # genera ambiente Virtuale
+source venv/bin/activate # attiva ambiente virtuale
+uvicorn main:app --reload # esegue il server uvicorn
+pip freeze > requirements.txt # genera il requirements.txt in base alle dipendenze
+docker build -t fastapi-demo . # build docker image
+docker run --detach --publish 3100:3100 fastapi-demo # start docker image
+
