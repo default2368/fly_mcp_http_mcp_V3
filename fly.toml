@@ -1,15 +1,12 @@
-app = 'test-mcp-prodv2'
+# fly.toml app configuration file generated for fly-mcp-http-v3 on 2025-10-23T18:52:40Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'fly-mcp-http-v3'
 primary_region = 'fra'
 
 [build]
-
-[env]
-  PORT = "8080"
-  HOST = "0.0.0.0"
-  DEBUG = "false"
-  LOG_LEVEL = "info"
-  MCP_SERVER_URL = "https://test-mcp-prodv2.fly.dev"
-  FASTAPI_SERVER_URL = "https://test-mcp-prodv2.fly.dev"
 
 [http_service]
   internal_port = 8080
@@ -19,15 +16,8 @@ primary_region = 'fra'
   min_machines_running = 0
   processes = ['app']
 
-[[http_service.ports]]
-  port = 80
-  handlers = ["http"]
-
-[[http_service.ports]]
-  port = 443
-  handlers = ["tls", "http"]
-
 [[vm]]
   memory = '512mb'
   cpu_kind = 'shared'
   cpus = 1
+  memory_mb = 512
