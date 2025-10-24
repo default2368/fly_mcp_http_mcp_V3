@@ -2,19 +2,28 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 # Copy requirements first to leverage Docker cache
 COPY requirements.txt .
 COPY setup.py .
 
-# Install dependencies and package in development mode
-RUN pip install --no-cache-dir -r requirements.txt && \
-    pip install -e .
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application
+# Copy the application code
 COPY . .
 
-# Set PYTHONPATH to include the app directory
-ENV PYTHONPATH="${PYTHONPATH}:/app"
+# Install the package in development mode
+RUN pip install -e .
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH="/app"
 
 # The main application to run
-CMD ["python", "main.py"]
+CMD ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
