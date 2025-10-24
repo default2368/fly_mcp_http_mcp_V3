@@ -8,9 +8,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 import uvicorn
 
-# CORREGGI QUESTI IMPORT
-from routes.mcp_routes import MCPRoutes  # non routes.mcp
-from modules.mcp_methods import MCPMethods  # non MCPFunctions
+# Import modules using relative imports
+from .routes.mcp_routes import MCPRoutes
+from .modules.mcp_methods import MCPMethods
 
 # Configurazione
 HOST = os.getenv("HOST", "0.0.0.0")
