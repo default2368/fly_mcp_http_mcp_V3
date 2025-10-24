@@ -4,7 +4,7 @@ Contiene gli endpoint API per il protocollo MCP
 """
 from fastapi import HTTPException
 from typing import Dict, Any
-from modules.mcp_functions import MCPMethods
+from modules.mcp_methods import MCPMethods  # CORREGGI: mcp_methods non mcp_functions
 
 
 class MCPRoutes:
