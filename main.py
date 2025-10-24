@@ -8,8 +8,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 import uvicorn
 
-from routes.mcp import MCPRoutes
-from modules.mcp_functions import MCPFunctions
+# CORREGGI QUESTI IMPORT
+from routes.mcp_routes import MCPRoutes  # non routes.mcp
+from modules.mcp_methods import MCPMethods  # non MCPFunctions
 
 # Configurazione
 HOST = os.getenv("HOST", "0.0.0.0")
@@ -25,7 +26,7 @@ app = FastAPI(
 # CORS per client remoti
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In produzione, specifica gli origin
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
