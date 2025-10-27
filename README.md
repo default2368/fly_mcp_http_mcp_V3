@@ -1,6 +1,6 @@
 # Flusso dell'Applicazione MCP
 
-
+Ecco il flusso dettagliato dell'applicazione, dalla ricezione di una richiesta HTTP all'esecuzione del metodo MCP:
 
 ## 1. Ingresso della Richiesta (main.py)
 
