@@ -14,9 +14,10 @@ Un server MCP (Model Context Protocol) deployato su Fly.io.
 ```bash
 fly launch
 fly deploy
+
 # Flusso dell'Applicazione MCP
 
-Ecco il flusso dettagliato dell'applicazione, dalla ricezione di una richiesta HTTP all'esecuzione del metodo MCP:
+
 
 ## 1. Ingresso della Richiesta (main.py)
 
