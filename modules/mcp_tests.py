@@ -25,6 +25,9 @@ class MCPMethods:
         
         elif tool_name == "check_remote_health":
             return MCPMethods._check_remote_health(arguments)
+
+        elif tool_name == "get_weather":
+            return MCPMethods._get_weather(arguments)
         
         else:
             return f"Error: Unknown tool '{tool_name}'"
@@ -39,6 +42,24 @@ class MCPMethods:
             "protocol": "HTTP",
             "message": "Hello from Remote MCP Server!"
         }, indent=2)
+
+    @staticmethod
+    def _get_weather(arguments: Dict[str, Any]) -> str:
+        """Restituisce dati meteo simulati per una località"""
+        location = arguments.get("location", "Unknown")
+        
+        if not location:
+            return "Error: Location parameter is required"
+        
+        # Dati meteo simulati
+        weather_data = {
+            "temperature": 22,
+            "conditions": "Sunny",
+            "humidity": 45,
+            "location": location,
+            "wind_speed": 15,
+            "pressure": 1013
+        }
 
     @staticmethod
     def _calculate_operation(arguments: Dict[str, Any]) -> str:
@@ -159,6 +180,21 @@ class MCPMethods:
                             "default": "https://httpbin.org/status/200"
                         }
                     }
+                }
+            },
+            {
+                "name": "get_weather",
+                "description": "Get simulated weather data for a location",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "location": {
+                            "type": "string",
+                            "description": "City name for weather data",
+                            "example": "Rome, London, New York"
+                        }
+                    },
+                    "required": ["location"]
                 }
             }
         ]
