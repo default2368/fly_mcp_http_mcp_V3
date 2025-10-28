@@ -34,7 +34,8 @@ class MCPDispatcher:
         
         # Tools GitHub
         elif tool_name in [
-            "get_github_repo_info", "get_github_user_info", "search_github_repos"
+            "get_github_repo_info", "get_github_user_info", "search_github_repos",
+            "get_github_file_content", "get_github_repo_structure"
         ]:
             return MCPGitHub.execute_github_tool(tool_name, arguments)
         

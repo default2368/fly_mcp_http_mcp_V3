@@ -80,7 +80,9 @@ async def list_tools_html():
         {"name": "get_weather_dynamic", "description": "Get real weather data for a location"},
         {"name": "get_github_repo_info", "description": "Get GitHub repository information"},
         {"name": "get_github_user_info", "description": "Get GitHub user information"},
-        {"name": "search_github_repos", "description": "Search repositories on GitHub"}
+        {"name": "search_github_repos", "description": "Search repositories on GitHub"},
+        {"name": "get_github_file_content", "description": "Read file content from GitHub"},
+        {"name": "get_github_repo_structure", "description": "Explore repository structure"}
     ]
     
     html_content = f"""
