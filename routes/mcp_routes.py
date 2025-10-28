@@ -6,10 +6,12 @@ from fastapi import HTTPException
 from typing import Dict, Any
 
 try:
-    # Try absolute import first (for when running as a module)
-    from modules.mcp_tests import MCPMethods
+    # Import del dispatcher unificato
+    from modules.mcp_dispatcher import MCPDispatcher
+    from modules.mcp_tests import MCPMethods  # Per i metodi handle_*
 except ImportError:
     # Fall back to relative import (for development)
+    from ..modules.mcp_dispatcher import MCPDispatcher
     from ..modules.mcp_tests import MCPMethods
 
 
@@ -32,11 +34,36 @@ class MCPRoutes:
                 response = MCPMethods.handle_initialize(msg_id)
                 
             elif method == "tools/list":
-                response = MCPMethods.handle_tools_list(msg_id)
+                # Usa il dispatcher per ottenere tutti i tools
+                response = {
+                    "jsonrpc": "2.0",
+                    "id": msg_id,
+                    "result": {
+                        "tools": MCPDispatcher.get_all_tools_list()
+                    }
+                }
                 
             elif method == "tools/call":
                 params = request_data.get("params", {})
-                response = MCPMethods.handle_tools_call(msg_id, params)
+                # Usa il dispatcher per eseguire il tool
+                tool_name = params.get("name", "")
+                arguments = params.get("arguments", {})
+                
+                print(f"Executing tool: {tool_name} with args: {arguments}")
+                result_text = MCPDispatcher.execute_tool(tool_name, arguments)
+                
+                response = {
+                    "jsonrpc": "2.0",
+                    "id": msg_id,
+                    "result": {
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": result_text
+                            }
+                        ]
+                    }
+                }
                 
             elif method == "notifications/initialized":
                 response = MCPMethods.handle_initialized_notification(msg_id)

@@ -83,7 +83,10 @@ async def list_tools_html():
         {"name": "format_text", "description": "Format text in different styles"},
         {"name": "check_remote_health", "description": "Check health of remote URLs"},
         {"name": "get_weather", "description": "Get simulated weather data for a location"},
-        {"name": "get_weather_dynammic", "description": "Get real weather data for a location"}
+        {"name": "get_weather_dynamic", "description": "Get real weather data for a location"},
+        {"name": "get_github_repo_info", "description": "Get GitHub repository information"},
+        {"name": "get_github_user_info", "description": "Get GitHub user information"},
+        {"name": "search_github_repos", "description": "Search repositories on GitHub"}
     ]
     
     html_content = f"""
@@ -95,13 +98,14 @@ async def list_tools_html():
                 .tool {{ background: #f5f5f5; padding: 15px; margin: 10px 0; border-radius: 5px; }}
                 .name {{ font-weight: bold; color: #333; }}
                 .desc {{ color: #666; }}
+                .github {{ border-left: 4px solid #6e5494; }}
             </style>
         </head>
         <body>
             <h1>MCP HTTP Server</h1>
             <p>Server running on {HOST}:{PORT}</p>
-            <h2>Available Tools:</h2>
-            {"".join([f'<div class="tool"><div class="name">{t["name"]}</div><div class="desc">{t["description"]}</div></div>' for t in tools_info])}
+            <h2>Available Tools ({len(tools_info)}):</h2>
+            {"".join([f'<div class="tool{" github" if "github" in t["name"] else ""}"><div class="name">{t["name"]}</div><div class="desc">{t["description"]}</div></div>' for t in tools_info])}
             <p><a href="/docs">API Documentation</a></p>
         </body>
     </html>
