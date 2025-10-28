@@ -81,7 +81,8 @@ async def list_tools_html():
         {"name": "get_server_info", "description": "Get server information and status"},
         {"name": "calculate_operation", "description": "Perform mathematical calculations"},
         {"name": "format_text", "description": "Format text in different styles"},
-        {"name": "check_remote_health", "description": "Check health of remote URLs"}
+        {"name": "check_remote_health", "description": "Check health of remote URLs"},
+        {"name": "get_weather", "description": "Get simulated weather data for a location"}
     ]
     
     html_content = f"""
