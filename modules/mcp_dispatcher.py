@@ -2,14 +2,20 @@
 MCP Dispatcher Module
 Coordina tutti i moduli MCP
 """
+import json
+import requests
 from typing import Dict, Any
 
 try:
     from modules.mcp_tests import MCPMethods
     from modules.mcp_github import MCPGitHub
 except ImportError:
-    from .mcp_tests import MCPMethods
-    from .mcp_github import MCPGitHub
+    try:
+        from .mcp_tests import MCPMethods
+        from .mcp_github import MCPGitHub
+    except ImportError:
+        from mcp_tests import MCPMethods
+        from mcp_github import MCPGitHub
 
 
 class MCPDispatcher:
@@ -38,6 +44,11 @@ class MCPDispatcher:
     @staticmethod
     def get_all_tools_list() -> list:
         """Combina tutte le liste di tools"""
-        core_tools = MCPMethods.get_tools_list()
-        github_tools = MCPGitHub.get_github_tools_list()
-        return core_tools + github_tools
+        try:
+            core_tools = MCPMethods.get_tools_list()
+            github_tools = MCPGitHub.get_github_tools_list()
+            return core_tools + github_tools
+        except Exception as e:
+            print(f"Error getting tools list: {e}")
+            # Fallback ai tools core
+            return MCPMethods.get_tools_list()

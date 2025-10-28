@@ -5,14 +5,9 @@ Contiene gli endpoint API per il protocollo MCP
 from fastapi import HTTPException
 from typing import Dict, Any
 
-try:
-    # Import del dispatcher unificato
-    from modules.mcp_dispatcher import MCPDispatcher
-    from modules.mcp_tests import MCPMethods  # Per i metodi handle_*
-except ImportError:
-    # Fall back to relative import (for development)
-    from ..modules.mcp_dispatcher import MCPDispatcher
-    from ..modules.mcp_tests import MCPMethods
+# Import semplificato - usa sempre absolute imports
+from modules.mcp_dispatcher import MCPDispatcher
+from modules.mcp_tests import MCPMethods
 
 
 class MCPRoutes:
