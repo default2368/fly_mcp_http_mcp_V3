@@ -44,22 +44,22 @@ class MCPMethods:
         }, indent=2)
 
     @staticmethod
-    def _get_weather(arguments: Dict[str, Any]) -> str:
-        """Restituisce dati meteo simulati per una località"""
-        location = arguments.get("location", "Unknown")
-        
-        if not location:
-            return "Error: Location parameter is required"
-        
-        # Dati meteo simulati
-        weather_data = {
-            "temperature": 22,
-            "conditions": "Sunny",
-            "humidity": 45,
-            "location": location,
-            "wind_speed": 15,
-            "pressure": 1013
-        }
+def _get_weather(arguments: Dict[str, Any]) -> str:
+    """Restituisce dati meteo simulati per una località"""
+    location = arguments.get("location", "Unknown")
+    
+    if not location:
+        return "Error: Location parameter is required"
+    
+    # Dati meteo simulati
+    weather_data = {
+        "temperature": 22,
+        "conditions": "Sunny",
+        "humidity": 45,
+        "location": location,
+        "wind_speed": 15,
+        "pressure": 1013
+    }
 
     @staticmethod
     def _calculate_operation(arguments: Dict[str, Any]) -> str:
