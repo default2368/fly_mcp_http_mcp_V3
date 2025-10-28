@@ -7,10 +7,10 @@ from typing import Dict, Any
 
 try:
     # Try absolute import first (for when running as a module)
-    from modules.mcp_methods import MCPMethods
+    from modules.mcp_tests import MCPMethods
 except ImportError:
     # Fall back to relative import (for development)
-    from ..modules.mcp_methods import MCPMethods
+    from ..modules.mcp_tests import MCPMethods
 
 
 class MCPRoutes:
